@@ -11,20 +11,22 @@ def falsa_pos():
     while k <= n:
         M = f(a)
         N = f(b)
-        xi = (a*N - b*M)/(N-M)
-        A = f(xi)
+        t_raiz = (a*N - b*M)/(N-M)
+        A = f(t_raiz)
 
-        if abs(A)<E or abs(b-a) < E:
-            print("A raiz pelo método da Falsa Posição é: ",xi)
+        if abs(b-a) < E or abs(A)<E:
+            print("A raiz pelo método da Falsa Posição é: ",t_raiz)
             break
         k = k + 1
-        elif A * N < 0:
+        if A * N < 0:
             a = b
             M = N
-        b = xi
+        b = t_raiz
         N = A
         if k > n:
             print("O método falhou após", n,"iterações.")
             break
 
-f = lambda x: math.pow(x,3) + x - 4 
+f = lambda x: math.log(x-1) + math.cos(x-1)
+
+falsa_pos()
