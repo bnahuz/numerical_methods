@@ -6,7 +6,7 @@ def falsa_pos():
     E = float(input("Erro em forma decimal: " ))
     n = int(input("Numéro máximo de iterações: " ))
 
-    k = 2
+    k = 1
     
     while k <= n:
         M = f(a)
@@ -17,7 +17,7 @@ def falsa_pos():
         if abs(b-a) < E or abs(A)<E:
             print("A raiz pelo método da Falsa Posição é: ",t_raiz)
             break
-        k = k + 1
+        k += 1
         if A * N < 0:
             a = b
             M = N
