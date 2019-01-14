@@ -9,7 +9,7 @@ def min_interacoes(a0,b0,E):
           a0: Início do intervalo
           b0: Final do intervalo
           E:  Erro considerado
-      Retorna:
+      Retorna: 
           Um n(número mínimo) de iterações necessárias.
     """
     conta = (math.log10(b0-a0)-math.log10(E))/math.log10(2)
