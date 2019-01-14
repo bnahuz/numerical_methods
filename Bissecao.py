@@ -1,5 +1,5 @@
 import math
-def max_interacoes(a0,b0,E): 
+def max_interacoes(a0,b0,E):
      """
         max_interacoes funciona de acordo com elementos previamente
         dados para retornar o valor mínimo de iterações necessárias
