@@ -15,7 +15,7 @@ def ponto_fixo():
     Erel = 1 # Erro Relativo inicial
     k = 1 #Contador
 
-    p_novo = g(x) #Primeira iterção
+    p_novo = g(x) #Primeira iteração
 
     if abs(dg(x)) > 1 :
         print("A sequência irá divergir.")
