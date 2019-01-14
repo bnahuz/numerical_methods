@@ -23,20 +23,20 @@ def bissecao():
     max_i = max_interacoes(a,b,E)
     print('O número mínimo de iterações para esta função é de: ',max_i)
     n = int(input("Numéro máximo de iterações: " ))
-    i = 1
-    Kzao = f(a)
+    i = 1 # Contador de iterações
+    Kzao = f(a) # Variável alocada para receber o valor de f(a) 
 
     while i <= n:
-        x = (a+b)/2
-        fx = f(x)
-        if fx == 0 or (b-a) < E:
+        x = (a+b)/2 #Média do intervalo
+        fx = f(x) #Média em função de x
+        if fx == 0 or (b-a) < E: #Critério de parada
             print("A raiz pelo método da bisseção é: ",x)
             break
-        i += 1
+        i += 1 #Incremento do contador
         if Kzao*fx < 0:
-            b = x
+            b = x 
         else:
-            a = x
+            a = x 
             Kzao = fx
             print("O método falhou após", n,"iterações.")
             break
