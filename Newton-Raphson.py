@@ -14,11 +14,11 @@ def new_rap():
             k += 1
             A = f(x)
             D = df(x)
-            p = x - A/D # Fórmula de Newton-Raphson
+            p = x - A/D # Fórmula de Newton-Raphson(iteração atual)
             if abs(p - x) < Err: #and abs(A) < Err:
                 print("A raiz pelo método de Newton-Raphson é: ", p)
                 break
-            x = p
+            x = p #Nova alocação para a próxima iteração
         if k > max_int:
             print("O método falhou após", max_int,"iterações.")
 
