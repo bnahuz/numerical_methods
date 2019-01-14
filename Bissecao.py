@@ -1,7 +1,7 @@
 import math
-def max_interacoes(a0,b0,E):
+def min_interacoes(a0,b0,E):
      """
-        max_interacoes funciona de acordo com elementos previamente
+        min_interacoes funciona de acordo com elementos previamente
         dados para retornar o valor mínimo de iterações necessárias
         para a aproximação da raiz de acordo com a fórmula:
             n >= log(a - b) - log (E) / log(2)
@@ -20,8 +20,8 @@ def bissecao():
     a = float(input("Extremo inicial: " ))
     b = float(input("Extremo final: " ))
     E = float(input("Erro em forma decimal: " ))
-    max_i = max_interacoes(a,b,E)
-    print('O número mínimo de iterações para esta função é de: ',max_i)
+    min_i = max_interacoes(a,b,E)
+    print('O número mínimo de iterações para esta função é de: ',min_i)
     n = int(input("Numéro máximo de iterações: " ))
     i = 1 # Contador de iterações
     Kzao = f(a) # Variável alocada para receber o valor de f(a) 
