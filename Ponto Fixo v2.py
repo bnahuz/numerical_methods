@@ -3,7 +3,7 @@ Adaptado de:
     Numerical Methods for Mathematics, Science and Engineering, [Graphics:../Images/FixedPointProg_gr_1.gif] Ed, 1992
     John H. Mathews
     Prentice-Hall, Inc
-    ISBN:  0-13-624990-6
+    ISBN:  0-13-624990-6 
 '''
 
 import math
