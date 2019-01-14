@@ -20,7 +20,7 @@ def bissecao():
     a = float(input("Extremo inicial: " ))
     b = float(input("Extremo final: " ))
     E = float(input("Erro em forma decimal: " ))
-    min_i = max_interacoes(a,b,E)
+    min_i = min_interacoes(a,b,E)
     print('O número mínimo de iterações para esta função é de: ',min_i)
     n = int(input("Numéro máximo de iterações: " ))
     i = 1 # Contador de iterações
