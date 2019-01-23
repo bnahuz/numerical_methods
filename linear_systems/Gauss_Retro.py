@@ -6,7 +6,6 @@ def solve(M):
     n = len(matrix)
     def retro_sub(n,matrix):
         xn_array = n*[0]
-
         for i in range (n-1,-1,-1):
             s = sum([matrix[i][j] * xn_array[j] for j in range(i + 1, n)])
             xn_array[i] = (matrix[i][n] - s) / matrix[i][i]
