@@ -1,16 +1,28 @@
 def identidade(n):
-    m = [[0 for x in range(n)] for y in range(n)]
+    I = [[0 for x in range(n)] for y in range(n)]
     for i in range(0,n):
-        m[i][i] = 1
-    return m
+        I[i][i] = 1
+    return I
 
-def inversa(A):
-    n = len(A)
-    inversa = identidade(n)
-    print("Matriz Inicial : ")
-    for x in A:
+ 
+def transposta(mA): #transposta
+    n = len(mA)
+    mT = identidade(n)
+    for i in range(n):
+        for j in range(n):
+            mT[i][j] = mA[j][i]
+
+    print("Matriz Transposta : ")
+    for x in mT:
         print(*x, sep=" ")
 
+    return mT
+
+
+def inversa(A, arred = 0):
+    n = len(A)
+    inversa = identidade(n)
+    
     indices = list(range(n)) # Auxiliar no loop "for"
     #print(indices)
     for fd in range(n): # fd serve para focar na diagonal
@@ -26,15 +38,19 @@ def inversa(A):
                 A[i][j] = A[i][j] - crScaler * A[fd][j]
                 inversa[i][j] = inversa[i][j] - crScaler * inversa[fd][j]
 
+    if arred == 1:            
+        for i in range (n):
+            for j in range(n):
+                inversa[i][j] = int(inversa[i][j])   
+
     print("Matriz Inversa : ")
     for x in inversa:
         print(*x, sep=" ")
 
-    return A,inversa
+    return inversa
 
 
 
-
-A = [[12,3,1],[8,4,3],[1,1,1]]
-
-inversa(A)
+M = [[12,3,1],[8,4,3],[1,1,1]]
+t = transposta(M)
+inv = inversa(M, 1)
