@@ -55,69 +55,44 @@ def transposta(mA):
 
     return mT
 
-def matrizCoef(A):
+def extender(A,b):
     n = len(A)
-    mC = []
     for i in range(n):
-        l = []
-        for j in range(n):
-            l.append(A[i][j])
-        mC.append(l)
-    return(mC)
+        A[i].append(b[i][0])
+    return A
 
-def retroSuperior(a, y):
-    n = len(a)
-    x = [0 for i in range(n)]
-    for i in range(n-1,-1,-1):
-        soma = y[i]
-        for k in range(i+1,n):
-            soma = soma - a[i][k]*x[k]
-        x[i] = soma/a[i][i]
-    return x
+def solve(M):
 
-def retroInferior(a, b):
-    #Recebe como entrada uma matriz triangular inferior e um vetor B , retorna um vetor y
-    n = len(a)
-    y = [0 for i in range(n)]
-    for i in range(0,n,1):
-        y[i] = b[i]
-        for k in range(0,i,1):
-            y[i] -= y[k]*a[i][k]
-        y[i] = y[i]/a[i][i]
-    return y
-    
-def choleskyX(a,b):
-    #Função que recebe uma matriz aumentada, faz a fatoração de cholesky e retorna o vetor solução X
+    def retro_sub(matrix):
+        n = len(matrix)
+        xn_array = n*[0]
+        for i in range (n-1,-1,-1):
+            s = sum([matrix[i][j] * xn_array[j] for j in range(i + 1, n)])
+            xn_array[i] = (matrix[i][n] - s) / matrix[i][i]
+        
+        return xn_array
 
-    #Calcula matriz dos coeficientes
-    mC = matrizCoef(a)
+    def gauss(matrix):
 
-    n = len(mC)
-    g = [[0 for i in range(n)] for i in range(n)]
-    for k in range(0,n):
-        soma = 0
-        #Calcula gkk ou elemento da diagonal
-        for j in range(0, k):
-            soma = soma + (g[k][j])**2
-        r = mC[k][k] - soma
-        g[k][k] = (r)**(1/2)
-        #Calcula elementos abaixo da diagonal ou gik
-        for i in range(k+1, n):
-            soma = 0
-            for j in range (0, k):
-                soma = soma + g[i][j]*g[k][j]
-            g[i][k] = (mC[i][k] - soma)/g[k][k]
+        n = len(matrix)
+        for k in range (n):
+            if matrix[k][k] == 0:
+                print("Elemento nulo na posição do pivô")
+                break
+            else:
+                for i in range(k + 1,n):
+                    m = -matrix[i][k]/matrix[k][k] #Coeficiente para "zerar" os elementos abaixo do pivô e reorganizar os valores da linha. 
+                    for j in range(k ,n+1): #Percorre a linha alterando os valores.
+                        #print("Antes: ", matrix[i][j])
+                        matrix[i][j] = matrix[i][j] + m * matrix[k][j]
+                        #print("Depois: ",matrix[i][j])
+                #print(m_array)
+        return matrix
 
-    print("Matriz G")
-    for i in range(n):
-        print(g[i])
-    #Descobre o vetor Y através de G*Y = b
-    y = retroInferior(g,b)
-    #Descobre o vetor X atravé de gT*X = y
-    gT = transposta(g)
-    x = retroSuperior(gT,y)
-    print("Vetor solução X:")
-    print(x)
+    triang_matrix = gauss(M)
+    vec_sol = retro_sub(triang_matrix)
+
+    print("\nSolução do sistema: \n",vec_sol)
 
 def sobreDet(x,y):
     A = [[1,i] for i in x]
@@ -150,12 +125,24 @@ def sobreDet(x,y):
     print("\nMatriz At * A : ")
     for x in Ax:
         print(*x, sep=" ")
+ 
+    input("\n Aperte Enter para continuar: ")
 
-    print("\nTendo como Ax = b , resolveremos por Cholesky")
+    print("--------------------------------")
+
+    print("\nAgora, unindo Ax(At*A) com b(At*b) \nformando uma matriz estendida.")
+
+    A_ex = extender(Ax,At_b)
+
+    print("\nMatriz A_ex : ")
+    for x in A_ex:
+        print(*x, sep=" ")
+
+    print("\nTendo agora a forma Ax = b , resolveremos por \nEliminação de Gauss")
 
     input("\n Aperte Enter para continuar: ")
 
-    choleskyX(Ax, At_b)
+    solve(A_ex)
 
 x = [1,3,4,6,8,9,11,14]
 y = [1,2,4,4,5,7,8,9]
